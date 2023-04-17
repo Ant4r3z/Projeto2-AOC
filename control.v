@@ -6,7 +6,7 @@ module control(
 			output reg		  branch_eq, branch_ne,
 			output reg [1:0] aluop,
 			output reg 		  memread, memwrite, memtoreg,
-		    output reg		  regdst, regwrite, alusrc,
+		        output reg		  regdst, regwrite, alusrc,
 			output reg 		  jump);
 			
 	always @(*) begin

@@ -4,14 +4,14 @@
 module control(
 			input wire [5:0] opcode,
 			output reg branch_eq, branch_ne,
-			output reg [1:0] aluop,
+			output reg [2:0] aluop,
 			output reg memread, memwrite, memtoreg,
 		        output reg regdst, regwrite, alusrc,
 			output reg jump);
 			
 	always @(*) begin
 		/* defaults */
-		aluop[1:0] <= 2'b10;
+		aluop[1:0] <= 2'b111;
 		alusrc 	   <= 1'b0;
 		branch_eq  <= 1'b0;
 		branch_ne  <= 1'b0;

@@ -1,4 +1,4 @@
-module regfile (ReadAddr1, ReadAddr2,ReadData1, ReadData2, Clock, WriteData, RegWrite, Reset, WriteAddr);
+module Regfile (ReadAddr1, ReadAddr2,ReadData1, ReadData2, Clock, WriteData, RegWrite, Reset, WriteAddr);
 
 input [4:0] ReadAddr1;
 input [4:0] ReadAddr2;
@@ -25,21 +25,21 @@ initial
     always @(ReadAddr2 or Clock) begin 
 	 ReadData2 = arrayreg[ReadAddr2];
     end
-
-	 always @(Reset) 
-	 begin
-        for(r=0;r<32;r=r+1) 
-		  begin
-            arrayreg[r] = 0;
-        end
-    end
 	 
-    always @(posedge Clock) 
+    always @(posedge Clock or posedge Reset) 
 	 begin
+			if (Reset) 
+			begin
+			for(r=0;r<32;r=r+1) 
+		  begin
+            arrayreg[r] <= 32'B0;
+        end
+		  end
         if (RegWrite && WriteAddr) 
 		  begin
             arrayreg[WriteAddr] <= WriteData;
         end
+		 
     end
 
 endmodule

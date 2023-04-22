@@ -28,18 +28,16 @@ initial
 	 
     always @(posedge Clock or posedge Reset) 
 	 begin
-			if (Reset) 
-			begin
-			for(r=0;r<32;r=r+1) 
-		  begin
+		if (Reset) begin
+			for(r=0;r<32;r=r+1) begin
             arrayreg[r] <= 32'B0;
-        end
-		  end
-        if (RegWrite && WriteAddr) 
-		  begin
+            end
+        end else begin
+        if (RegWrite) begin
             arrayreg[WriteAddr] <= WriteData;
+            arrayreg[0] <= 0;
+            end
         end
-		 
     end
 
 endmodule

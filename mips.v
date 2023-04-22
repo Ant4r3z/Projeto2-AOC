@@ -24,7 +24,7 @@ wire memread, memwrite, memtoreg;
 wire regdst, regwrite, alusrc;
 wire jump;
 
-wire [31:0] sign_extend_out
+wire [31:0] sign_extend_out;
 
 PC pc (clock, nextPC, pcout);
 

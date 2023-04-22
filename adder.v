@@ -1,7 +1,7 @@
 module adder ( input wire [31:0] valor1,  
                 input wire [31:0] valor2,    
   
-                  output [31:0] soma);
+                  output wire [31:0] soma);
 
   assign {soma} = valor1 + valor2;  
 endmodule

@@ -1,15 +1,11 @@
-module shift_operator (); 
+module shift_operator (
+  l_Shift,
+  shift_out
+); 
  
-  reg        [3:0] r_Shift1 = 4'b1000;
-  reg signed [3:0] r_Shift2 = 4'b1000;
+  input wire [31:0] l_Shift;
+  output wire [31:0] shift_out;
+
+  assign shift_out = l_Shift << 2;
    
-  initial
-    begin
-      // Shift left 
-      $display("%b", r_Shift1 <<  1);
-      $display("%b", $signed(r_Shift1) <<< 1); // Cast as signed
-      $display("%b", r_Shift2 <<< 1); // Declared as signed type // Right Shift $display("%b", r_Shift1 >>  2);
-      $display("%b", $signed(r_Shift1) >>> 2); // Cast as signed
-      $display("%b", r_Shift2 >>> 2) ;         // Declared as signed type
-    end
 endmodule

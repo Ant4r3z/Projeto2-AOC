@@ -23,6 +23,10 @@ wire memread, memwrite, memtoreg;
 wire regdst, regwrite, alusrc;
 wire jump;
 
+wire address;
+
+
+
 wire [31:0] sign_extend_out;
 
 PC pc (clock, nextPC, pcout);
@@ -38,5 +42,7 @@ sign_extend sign_extend (instruction[15:0], sign_extend_out);
 Regfile regfile (instruction[25:21], instruction[20:16], ReadData1, ReadData2, clock, WriteData, regwrite, Reset, WriteAddr);
 
 mux2 muxWriteRegister (instruction[20:16],instruction[15:11], regdst, WriteAddr);
+
+mux2 muxAlu (ReadData2, sign_extend, alusrc, address);
 
 endmodule

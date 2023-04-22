@@ -60,7 +60,7 @@ module control(
 				regdst    <= 1'b1;
 				regwrite  <= 1'b1;
 				alusrc 	  <= 1'b0;
-				aluop[3]  <= 3'b0;
+				aluop  <= 3'b101;
 				memwrite  <= 1'b0;
 				memread   <= 1'b0;
 				memtoreg  <= 1'b0;
@@ -78,7 +78,7 @@ module control(
 				branch_ne <= 1'bX;
 				jump      <= 1'b1;
 			end
-			6'101010: begin     /* slt */
+			6'b101010: begin     /* slt */
 				regdst    <= 1'b1;
 				regwrite  <= 1'b1;
 				alusrc    <= 1'b0;
@@ -90,7 +90,7 @@ module control(
 				branch_ne <= 1'b0;
 				jump      <= 1'b0;
 			end
-			6'101001: begin      /* sltu */
+			6'b101001: begin      /* sltu */
 				regdst	  <= 1'b0;
 				regwrite  <= 1'b1;
 				alusrc	  <= 1'b0;
@@ -102,7 +102,7 @@ module control(
 				branch_ne <= 1'b0;
 				jump      <= 1'b0;
 			end
-			6'100110: begin      /* xor */
+			6'b100110: begin      /* xor */
 				regdst    <= 1'b0;
 				regwrite  <= 1'b1;
 				alusrc    <= 1'b1;
@@ -114,7 +114,7 @@ module control(
 				branch_ne <= 1'b0;
 				jump      <= 1'b0;
 			end
-			6'100101: begin      /* or */
+			6'b100101: begin      /* or */
 				regdst    <= 1'b0;
 				regwrite  <= 1'b1;
 				alusrc    <= 1'b1;
@@ -126,7 +126,7 @@ module control(
 				branch_ne <= 1'b0;
 				jump      <= 1'b0;
 			end
-			6'100100: begin      /* and */
+			6'b100100: begin      /* and */
 				regdst    <= 1'b0;
 				regwrite  <= 1'b1;
 				alusrc    <= 1'b1;
@@ -138,7 +138,7 @@ module control(
 				branch_ne <= 1'b0;
 				jump      <= 1'b0;
 			end
-			6'100010: begin     /* sub */
+			6'b100010: begin     /* sub */
 				regdst    <= 1'b1;
 				regwrite  <= 1'b1;
 				alusrc    <= 1'b0;

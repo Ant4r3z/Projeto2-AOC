@@ -1,6 +1,9 @@
 module mux2 (A, B, sel, X);
-	input wire A,B,sel;
-	output wire X;
-	
-	assign X = sel? B : A;	
+	input wire [31:0] A, B;
+	input wire sel;
+	output reg [31:0] X;
+
+always @(*) begin
+	X = sel? B : A;	
+end
 endmodule

@@ -1,5 +1,5 @@
 module ula (
-    In1, In2, OP, result, Zero_flag, shamt, immediate
+    In1, In2, OP, result, Zero_flag, shamt, immediate, bne
 );
 
 input wire [31:0] In1, In2;
@@ -9,8 +9,9 @@ output reg [31:0] result;
 output wire Zero_flag;
 
 input wire [15:0] immediate;
+input wire bne;
 
-assign Zero_flag = (result == 0);
+assign Zero_flag = bne ? (result != 0) : (result == 0);
 
 
 always @(*) begin
@@ -18,9 +19,9 @@ always @(*) begin
         4'b0000: result <= In2 << shamt;    // sll
         6'b0001: result <= In2 >> shamt;    // srl
         6'b0010: result <= In2 >> shamt;    // sra
-        6'b0011: result <= In2 << In2;      // sllv
-        6'b0100: result <= In2 >> In2;      // srlv
-        6'b0101: result <= In2 >> In2;      // srav
+        6'b0011: result <= In2 << In1;      // sllu
+        6'b0100: result <= In2 >> In1;      // srlu
+        6'b0101: result <= In2 >> In1;      // srau
         6'b0110: result <= In1 + In2;       // add
         6'b0111: result <= In1 - In2;       // sub
         6'b1000: result <= In1 & In2;       // and

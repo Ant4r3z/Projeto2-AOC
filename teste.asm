@@ -1,8 +1,12 @@
-# teste 2 - SLL e BEQ: na primeira it. loop, deve retornar para o label. No 2o, deve seguir adiante
+	#teste 7 - JAL
 	addi $t9, $t9, 1 #incremento do contador de teste
 	
-	addi $s0, $0, 5
-	addi $s1, $0, 20	
-	teste2:	
-	sll $s0, $s0, 2
-	beq $s0, $s1, teste2 
+	jal jump_link #OBSERVAR O VALOR DO PC NESTA INSTRUÇÃO
+	#nada disso deve acontecer
+	addi $8, $0, -1
+	addi $8, $0, -2
+	addi $8, $0, -3
+	addi $8, $0, -4
+	jump_link:
+	add $8, $0, $ra #deve apresentar na ULA o PC+4 da instrução jal JAL
+	

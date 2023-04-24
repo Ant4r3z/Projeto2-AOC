@@ -1,13 +1,10 @@
-`ifndef _control
-`define _control
-
 module control(
-			input wire [5:0] opcode,
+			input wire [5:0] opcode, func,
 			output reg branch, bne,
 			output reg [2:0] aluop,
 			output reg memread, memwrite, memtoreg,
 		    output reg regdst, regwrite, alusrc,
-			output reg jump);
+			output reg jump, output wire jr);
 			
 	always @(*) begin
 		/* defaults */
@@ -227,10 +224,9 @@ module control(
 			end
 		endcase
 	end
+	assign jr = (opcode == 6'b000000) ? ((func == 6'b001000) ? 1'b1 : 1'b0) : 1'b0;
 endmodule
 
-`endif
-		
 			
 		
 				

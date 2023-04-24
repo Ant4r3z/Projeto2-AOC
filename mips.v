@@ -1,13 +1,14 @@
 module mips(
-clock, pcout, instruction, nextPC, ALUOp, OP, zero_flag, jump, jump_address, mux_jump_out, instructionWriteAddress
+clock, pcout, instruction, ALUOp, OP, zero_flag, jump, aluin1, aluin2, aluresult
 );
 
-output wire [31:0] pcout, nextPC;
+output wire [31:0] pcout;
+wire [31:0] nextPC;
 input wire clock;
 output wire [2:0] ALUOp;
 output wire [3:0] OP;
-wire [31:0] aluin1, aluin2;
-wire [31:0] aluresult;
+output wire [31:0] aluin1, aluin2;
+output wire [31:0] aluresult;
 output wire zero_flag;
 wire [4:0] shamt;
 output wire [31:0] instruction;
@@ -40,7 +41,7 @@ wire and_branch_out;
 
 wire [31:0]readdata; 
 
-output wire [31:0] jump_address, mux_jump_out, instructionWriteAddress;
+wire [31:0] jump_address, mux_jump_out, instructionWriteAddress;
 
 
 PC pc (clock, nextPC, pcout);

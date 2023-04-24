@@ -29,18 +29,21 @@ module control(
 				aluop[1]  <= 1'b0;
 				alusrc    <= 1'b1;
 				branch <= 1'b0;
+				bne 	   <= 1'b0;
 			end
 			6'b001000: begin 	/* addi */
 				regdst	  <= 1'b0;
 				aluop  <= 3'b000;
 				alusrc	  <= 1'b1;
 				branch <= 1'b0;
+				bne 	   <= 1'b0;
 			end
 			6'b000100: begin 	/* beq */
 				aluop  <= 4'b0001;
 				branch <= 1'b1;
 				regwrite  <= 1'b0;
 				alusrc <= 1'b0;
+				bne 	   <= 1'b0;
 			end
 			6'b101011: begin 	/* sw */
 				regdst 	  <= 1'bX;
@@ -51,6 +54,7 @@ module control(
 				alusrc	  <= 1'b1;
 				regwrite  <= 1'b0;
 				branch <= 1'b0;
+				bne 	   <= 1'b0;
 			end
 			6'b000101: begin 	/* bne */
 				aluop  <= 4'b0001;
@@ -69,6 +73,7 @@ module control(
 				memtoreg  <= 1'b0;
 				jump 	  <= 1'b0;
 				branch <= 1'b0;
+				bne 	   <= 1'b0;
 			end
 			6'b000010: begin 	/* j */
 				regdst    <= 1'bX;
@@ -80,6 +85,7 @@ module control(
 				memtoreg  <= 1'bX;
 				branch <= 1'b0;
 				jump      <= 1'b1;
+				bne 	   <= 1'b0;
 			end
 			6'b000011: begin 	/* jal */
 				regdst    <= 1'bX;
@@ -91,6 +97,7 @@ module control(
 				memtoreg  <= 1'bX;
 				branch <= 1'b0;
 				jump      <= 1'b1;
+				bne 	   <= 1'b0;
 			end
 			6'b101010: begin     /* slt */
 				regdst    <= 1'b1;
@@ -101,6 +108,7 @@ module control(
 				memread   <= 1'b1;
 				memtoreg  <= 1'b0;
 				branch <= 1'b0;
+				bne 	   <= 1'b0;
 				
 	
 				jump      <= 1'b0;
@@ -114,6 +122,7 @@ module control(
 				memread   <= 1'b0;
 				memtoreg  <= 1'b0;
 				branch <= 1'b0;
+				bne 	   <= 1'b0;
 				
 	
 				jump      <= 1'b0;
@@ -127,6 +136,7 @@ module control(
 				memread   <= 1'b0;
 				memtoreg  <= 1'b0;
 				branch <= 1'b0;
+				bne 	   <= 1'b0;
 				
 	
 				jump      <= 1'b0;
@@ -140,6 +150,7 @@ module control(
 				memread   <= 1'b0;
 				memtoreg  <= 1'b0;
 				branch <= 1'b0;
+				bne 	   <= 1'b0;
 				
 	
 				jump      <= 1'b0;
@@ -153,6 +164,7 @@ module control(
 				memread   <= 1'b0;
 				memtoreg  <= 1'b0;
 				branch <= 1'b0;
+				bne 	   <= 1'b0;
 				
 	
 				jump      <= 1'b0;
@@ -166,6 +178,7 @@ module control(
 				memread   <= 1'b0;
 				memtoreg  <= 1'b0;
 				branch <= 1'b0;
+				bne 	   <= 1'b0;
 				
 	
 				jump      <= 1'b0;
@@ -179,6 +192,7 @@ module control(
 				memread   <= 1'b0;
 				memtoreg  <= 1'b0;
 				branch <= 1'b0;
+				bne 	   <= 1'b0;
 				
 	
 				jump      <= 1'b0;
@@ -192,6 +206,7 @@ module control(
 				memread   <= 1'b0;
 				memtoreg  <= 1'b0;
 				branch <= 1'b0;
+				bne 	   <= 1'b0;
 				
 	
 				jump      <= 1'b0;
@@ -205,6 +220,7 @@ module control(
 				memread   <= 1'b0;
 				memtoreg  <= 1'b0;
 				branch <= 1'b0;
+				bne 	   <= 1'b0;
 				
 	
 				jump      <= 1'b0;

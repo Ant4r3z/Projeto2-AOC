@@ -1,5 +1,5 @@
 module ula (
-    In1, In2, OP, result, Zero_flag, shamt, immediate
+    In1, In2, OP, result, Zero_flag, shamt, immediate, bne
 );
 
 input wire [31:0] In1, In2;
@@ -9,8 +9,9 @@ output reg [31:0] result;
 output wire Zero_flag;
 
 input wire [15:0] immediate;
+input wire bne;
 
-assign Zero_flag = (result == 0);
+assign Zero_flag = bne ? (result != 0) : (result == 0);
 
 
 always @(*) begin

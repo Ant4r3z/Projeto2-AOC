@@ -3,7 +3,7 @@
 
 module control(
 			input wire [5:0] opcode,
-			output reg branch,
+			output reg branch, bne,
 			output reg [2:0] aluop,
 			output reg memread, memwrite, memtoreg,
 		    output reg regdst, regwrite, alusrc,
@@ -13,7 +13,7 @@ module control(
 		/* defaults */
 		aluop[2:0] <= 2'b111;
 		alusrc 	   <= 1'b0;
-		
+		bne 	   <= 1'b0;
 		memread    <= 1'b0;
 		memtoreg   <= 1'b0;
 		memwrite   <= 1'b0;
@@ -57,6 +57,7 @@ module control(
 				branch <= 1'b1;
 				regwrite  <= 1'b0;
 				alusrc <= 1'b0;
+				bne <=1'b1;
 			end
 			6'b000000: begin	/* add */
 				regdst    <= 1'b1;
@@ -78,8 +79,17 @@ module control(
 				memread	  <= 1'b0;
 				memtoreg  <= 1'bX;
 				branch <= 1'b0;
-				
-	
+				jump      <= 1'b1;
+			end
+			6'b000011: begin 	/* jal */
+				regdst    <= 1'bX;
+				regwrite  <= 1'b1;
+				alusrc    <= 1'bX;
+				aluop     <= 4'bXXX;
+				memwrite  <= 1'b0;
+				memread	  <= 1'b0;
+				memtoreg  <= 1'bX;
+				branch <= 1'b0;
 				jump      <= 1'b1;
 			end
 			6'b101010: begin     /* slt */

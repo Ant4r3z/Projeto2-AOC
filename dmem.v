@@ -1,4 +1,4 @@
-module d_mem(address, writeData, memWrite, memRead, readData);
+module dmem(address, writeData, memWrite, memRead, readData);
 
 parameter memorySize = 256;
 

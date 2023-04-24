@@ -17,7 +17,7 @@ always @(*) begin
     case (OP)
         4'b0000: result <= In2 << shamt;    // sll
         6'b0001: result <= In2 >> shamt;    // srl
-        6'b0010: result <= In2 >> shamt;    // sra
+        6'b0010: result <= $signed ($signed (In2) >>> shamt);    // sra
         6'b0011: result <= In2 << In2;      // sllv
         6'b0100: result <= In2 >> In2;      // srlv
         6'b0101: result <= In2 >> In2;      // srav

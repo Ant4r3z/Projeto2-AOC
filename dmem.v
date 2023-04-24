@@ -9,7 +9,7 @@ input wire memRead;
 
 output wire [31:0] readData;
 
-reg [31:0] mainMem [memorySize-1:0];
+reg [31:0] mainMem [0:memorySize-1];
 
 integer i;
 initial begin

@@ -1,9 +1,9 @@
 module mips(
-clock, pcout, ALUOp, OP, aluin1, aluin2, aluresult, readdata, instruction, ReadData2
+clock, pcout, nextPC, ALUOp, OP, aluin1, aluin2, aluresult, instruction, ReadData2
 );
 
 output wire [31:0] pcout;
-wire [31:0] nextPC;
+output wire [31:0] nextPC;
 input wire clock;
 output wire [3:0] ALUOp;
 output wire [3:0] OP;
@@ -31,7 +31,7 @@ wire [31:0] sign_extend_out;
 
 wire [31:0] shift_branch_out;
 
-wire [31:0] add_pc_4_out;
+wire [31:0] add_pc_4_out, add_pc_4_jal_out;
 
 wire [31:0] adder_branch_out;
 
@@ -40,10 +40,11 @@ wire mux_branch_out;
 
 wire and_branch_out;
 
-output wire [31:0] readdata; 
+wire [31:0] readdata; 
 
 wire [31:0] jump_address, mux_jump_out, instructionWriteAddress;
 
+wire [31:0] mux_data_out;
 
 // modulos e conexoes
 
@@ -74,7 +75,7 @@ e and_branch (branch, zero_flag, and_branch_out);
 
 mux2 mux_branch (mux_jump_out, adder_branch_out, and_branch_out, nextPC);
 
-mux2 mux_data (aluresult, readdata, memtoreg, WriteData);
+mux2 mux_data (aluresult, readdata, memtoreg, mux_data_out);
 
 int_mem imem (pcout, instruction);
 
@@ -83,5 +84,8 @@ jump_control jpctrl (instruction, add_pc_4_out, jump_address);
 mux2 muxJumpControl (add_pc_4_out, jump_address, jump, mux_jump_out);
 
 dmem d_mem (clock, ReadData2, aluresult, memwrite, memread, readdata);
+
+adder adder_pc_jal (add_pc_4_out, 32'b100, add_pc_4_jal_out);
+mux2 mux_write_data (mux_data_out, add_pc_4_jal_out, jump, WriteData);
 
 endmodule

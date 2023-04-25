@@ -84,8 +84,13 @@ int_mem imem (pcout, instruction);
 
 jump_control jpctrl (instruction, add_pc_4_out, jump_address);
 
+jump_control jpctrl (instruction, add_pc_4_out, jump_address);
+
 mux2 muxJumpControl (add_pc_4_out, jump_address, jump, mux_jump_out);
 
-mux2 muxJR (mux_branch_out, ReadData1, jr, nextPC);
+dmem d_mem (clock, ReadData2, aluresult, memwrite, memread, readdata);
+
+adder adder_pc_jal (add_pc_4_out, 32'b100, add_pc_4_jal_out);
+mux2 mux_write_data (mux_data_out, add_pc_4_jal_out, jump, WriteData);
 
 endmodule

@@ -7,7 +7,7 @@
 // - Ronaldo Rodrigues
 
 
-// módulo de PC, 
+// módulo de PC, atualiza a instrução que será enviada ba memória
 module PC (clock, nextPC, PC);
 
 	input clock;

@@ -6,8 +6,6 @@
 // - Gilvaney Leandro
 // - Joyce Mirelle
 // - Ronaldo Rodrigues
-
-// nome do grupo, atividade 2VA, disciplina, semestre letivo, questão referente ao arquivo, breve descrição do conteúdo do arquivo, etc.
 // Regfile: Banco de registradores, o qual recebe informações de um dois registradores e em seguida
 // escreve em um registrador de forma assíncrona
 

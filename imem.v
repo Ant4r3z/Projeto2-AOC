@@ -18,7 +18,7 @@ integer i;
 
 
 initial begin
-        $readmemb("C:/quartus/Projeto2-AOC/teste_no5.list", instrucao);
+        $readmemb("C:/Arquitetura/Projeto2-AOC/Projeto2-AOC/instruction.list", instrucao);
     end
 
       

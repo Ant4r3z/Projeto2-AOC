@@ -1,13 +1,20 @@
-`ifndef _control
-`define _control
+// [BCC 2022.1] Arquitetura e Organização de Computadores
+// Atividade 2VA
+// Arquitetantes:
+// - Gabriel Santos
+// - Gilvaney Leandro
+// - Joyce Mirelle
+// - Ronaldo Rodrigues
+
+// Control: Unidade responsável por gerar todos os sinais de controle para a execução de todas as instruções especificadas.
 
 module control(
-			input wire [5:0] opcode,
+			input wire [5:0] opcode, func,
 			output reg branch, bne,
 			output reg [3:0] aluop,
 			output reg memread, memwrite, memtoreg,
 		    output reg regdst, regwrite, alusrc,
-			output reg jump);
+			output reg jump, output wire jr);
 			
 	always @(*) begin
 		/* defaults */
@@ -116,8 +123,6 @@ module control(
 				memtoreg  <= 1'b0;
 				branch <= 1'b0;
 				bne 	   <= 1'b0;
-				
-	
 				jump      <= 1'b0;
 			end
 			6'b101001: begin      /* sltu */
@@ -130,8 +135,6 @@ module control(
 				memtoreg  <= 1'b0;
 				branch <= 1'b0;
 				bne 	   <= 1'b0;
-				
-	
 				jump      <= 1'b0;
 			end
 			6'b100110: begin      /* xor */
@@ -144,8 +147,6 @@ module control(
 				memtoreg  <= 1'b0;
 				branch <= 1'b0;
 				bne 	   <= 1'b0;
-				
-	
 				jump      <= 1'b0;
 			end
 			6'b100101: begin      /* or */
@@ -172,8 +173,6 @@ module control(
 				memtoreg  <= 1'b0;
 				branch <= 1'b0;
 				bne 	   <= 1'b0;
-				
-	
 				jump      <= 1'b0;
 			end
 			6'b100010: begin     /* sub */
@@ -186,8 +185,6 @@ module control(
 				memtoreg  <= 1'b0;
 				branch <= 1'b0;
 				bne 	   <= 1'b0;
-				
-	
 				jump      <= 1'b0;
 			end
 			6'b001111: begin
@@ -200,8 +197,6 @@ module control(
 				memtoreg  <= 1'b0;
 				branch <= 1'b0;
 				bne 	   <= 1'b0;
-				
-	
 				jump      <= 1'b0;
 			end
 			6'b001101: begin      /* ori */
@@ -214,8 +209,6 @@ module control(
 				memtoreg  <= 1'b0;
 				branch <= 1'b0;
 				bne 	   <= 1'b0;
-				
-	
 				jump      <= 1'b0;
 			end
 			default: begin
@@ -228,16 +221,13 @@ module control(
 				memtoreg  <= 1'b0;
 				branch <= 1'b0;
 				bne 	   <= 1'b0;
-				
-	
 				jump      <= 1'b0;
 			end
 		endcase
 	end
+	assign jr = (opcode == 6'b000000) ? ((func == 6'b001000) ? 1'b1 : 1'b0) : 1'b0;
 endmodule
 
-`endif
-		
 			
 		
 				

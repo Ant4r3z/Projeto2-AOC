@@ -5,7 +5,7 @@ output reg [31:0] i_out;
 reg [31:0] instruction [255:0];
 
 initial begin
-    $readmemb("C:/quartus/Projeto2-AOC/teste_no5.list", instruction);
+    $readmemb("C:/quartus/Projeto2-AOC/teste5.list", instruction);
 end
 
 always @(address) begin

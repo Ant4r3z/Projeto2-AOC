@@ -1,11 +1,11 @@
 module mips(
-clock, pcout, instruction, ALUOp, OP, zero_flag, jump, aluin1, aluin2, aluresult
+clock, pcout, instruction, ALUOp, OP, zero_flag, jump, aluin1, aluin2, aluresult, ReadData2, readdata
 );
 
 output wire [31:0] pcout;
 wire [31:0] nextPC;
 input wire clock;
-output wire [2:0] ALUOp;
+output wire [3:0] ALUOp;
 output wire [3:0] OP;
 output wire [31:0] aluin1, aluin2;
 output wire [31:0] aluresult;
@@ -15,7 +15,7 @@ output wire [31:0] instruction;
 wire [4:0] ReadAddr1;
 wire [4:0] ReadAddr2;
 wire [31:0] ReadData1;
-wire [31:0] ReadData2;
+output wire [31:0] ReadData2;
 wire [4:0] WriteAddr;
 wire [31:0] WriteData;
 wire Reset;
@@ -39,7 +39,7 @@ wire mux_branch_out;
 
 wire and_branch_out;
 
-wire [31:0]readdata; 
+output wire [31:0] readdata; 
 
 wire [31:0] jump_address, mux_jump_out, instructionWriteAddress;
 
@@ -79,6 +79,6 @@ jump_control jpctrl (instruction, add_pc_4_out, jump_address);
 
 mux2 muxJumpControl (add_pc_4_out, jump_address, jump, mux_jump_out);
 
-dmem d_mem (aluresult, ReadData2, memwrite, memread, readdata);
+dmem d_mem (ReadData2, aluresult, memwrite, memread, readdata);
 
 endmodule

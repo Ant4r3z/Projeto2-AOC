@@ -6,6 +6,8 @@
 // - Joyce Mirelle
 // - Ronaldo Rodrigues
 
+// Control: Unidade responsável por gerar todos os sinais de controle para a execução de todas as instruções especificadas.
+
 module control(
 			input wire [5:0] opcode, func,
 			output reg branch, bne,
@@ -114,8 +116,6 @@ module control(
 				memtoreg  <= 1'b0;
 				branch <= 1'b0;
 				bne 	   <= 1'b0;
-				
-	
 				jump      <= 1'b0;
 			end
 			6'b101001: begin      /* sltu */
@@ -128,8 +128,6 @@ module control(
 				memtoreg  <= 1'b0;
 				branch <= 1'b0;
 				bne 	   <= 1'b0;
-				
-	
 				jump      <= 1'b0;
 			end
 			6'b100110: begin      /* xor */
@@ -142,8 +140,6 @@ module control(
 				memtoreg  <= 1'b0;
 				branch <= 1'b0;
 				bne 	   <= 1'b0;
-				
-	
 				jump      <= 1'b0;
 			end
 			6'b100101: begin      /* or */
@@ -170,8 +166,6 @@ module control(
 				memtoreg  <= 1'b0;
 				branch <= 1'b0;
 				bne 	   <= 1'b0;
-				
-	
 				jump      <= 1'b0;
 			end
 			6'b100010: begin     /* sub */
@@ -184,8 +178,6 @@ module control(
 				memtoreg  <= 1'b0;
 				branch <= 1'b0;
 				bne 	   <= 1'b0;
-				
-	
 				jump      <= 1'b0;
 			end
 			6'b001111: begin
@@ -198,8 +190,6 @@ module control(
 				memtoreg  <= 1'b0;
 				branch <= 1'b0;
 				bne 	   <= 1'b0;
-				
-	
 				jump      <= 1'b0;
 			end
 			6'b001101: begin      /* ori */
@@ -212,8 +202,6 @@ module control(
 				memtoreg  <= 1'b0;
 				branch <= 1'b0;
 				bne 	   <= 1'b0;
-				
-	
 				jump      <= 1'b0;
 			end
 			default: begin
@@ -226,8 +214,6 @@ module control(
 				memtoreg  <= 1'b0;
 				branch <= 1'b0;
 				bne 	   <= 1'b0;
-				
-	
 				jump      <= 1'b0;
 			end
 		endcase

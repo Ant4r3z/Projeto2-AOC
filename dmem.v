@@ -1,6 +1,6 @@
-module dmem(writeData, address, memWrite, memRead, readData);
+module dmem(clock, writeData, address, memWrite, memRead, readData);
 
-parameter memorySize = 4294967296;
+parameter memorySize = 256;
 
 input wire [31:0] address;
 input wire [31:0] writeData;
@@ -8,7 +8,7 @@ input wire memWrite;
 input wire memRead;
 
 output wire [31:0] readData;
-
+input clock;
 reg [31:0] mainMemory [0:memorySize-1];
 
 integer i;
@@ -19,10 +19,10 @@ initial begin
     end
 end
 
-always @(*) begin
-    if (memWrite == 1) begin
+always @(posedge clock) begin
+    if (memWrite == 1'b1) begin
         mainMemory[address] <= writeData;
-    end 
+    end
 
     // if(memRead) begin
     //     readData <= mainMemory[address];
@@ -31,6 +31,12 @@ always @(*) begin
     // end
 end
 
-assign readData = ((memRead == 1) ? mainMemory[address] : 32'b0);
+assign readData = (memRead == 0) ? 32'b0 : mainMemory[address];
+
+// always @(address) begin
+//     if (memRead == 1'b1) begin
+//         readData <= mainMemory[address];
+//     end
+// end
 
 endmodule

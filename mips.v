@@ -81,7 +81,7 @@ adder adder_pc (pcout, 32'b100, add_pc_4_out);
 
 e and_branch (branch, zero_flag, and_branch_out);
 
-mux2 mux_branch (mux_jump_out, adder_branch_out, and_branch_out, nextPC);
+mux2 mux_branch (mux_jump_out, adder_branch_out, and_branch_out, mux_branch_out);
 
 mux2 mux_data (aluresult, readdata, memtoreg, mux_data_out);
 

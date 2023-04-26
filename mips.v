@@ -7,17 +7,18 @@
 // - Ronaldo Rodrigues
 
 module mips(
-clock, pcout, instruction, ALUOp, OP, zero_flag, jump, aluin1, aluin2, aluresult
+clock, pcout, nextPC, aluresult, instruction, readdata
 );
 
 output wire [31:0] pcout;
-wire [31:0] nextPC, mux_branch_out;
+output wire [31:0] nextPC;
+wire [31:0] mux_branch_out;
 input wire clock;
-output wire [2:0] ALUOp;
-output wire [3:0] OP;
-output wire [31:0] aluin1, aluin2;
+wire [3:0] ALUOp;
+wire [3:0] OP;
+wire [31:0] aluin1, aluin2;
 output wire [31:0] aluresult;
-output wire zero_flag;
+wire zero_flag;
 wire [4:0] shamt;
 output wire [31:0] instruction;
 wire [4:0] ReadAddr1;
@@ -27,8 +28,9 @@ wire [31:0] ReadData2;
 wire [4:0] WriteAddr;
 wire [31:0] WriteData;
 wire Reset;
-wire memread, memwrite, memtoreg, regdst, regwrite, alusrc, branch, bne, jr;
-output wire jump;
+wire memread, memtoreg, regdst, regwrite, alusrc, branch, bne;
+wire memwrite;
+wire jump;
 
 wire address;
 
@@ -38,7 +40,7 @@ wire [31:0] sign_extend_out;
 
 wire [31:0] shift_branch_out;
 
-wire [31:0] add_pc_4_out;
+wire [31:0] add_pc_4_out, add_pc_4_jal_out;
 
 wire [31:0] adder_branch_out;
 
@@ -46,10 +48,13 @@ wire [31:0] adder_branch_out;
 
 wire and_branch_out;
 
-wire [31:0]readdata; 
+output wire [31:0] readdata; 
 
 wire [31:0] jump_address, mux_jump_out, instructionWriteAddress;
 
+wire [31:0] mux_data_out;
+
+// modulos e conexoes
 
 PC pc (clock, nextPC, pcout);
 
@@ -78,7 +83,7 @@ e and_branch (branch, zero_flag, and_branch_out);
 
 mux2 mux_branch (mux_jump_out, adder_branch_out, and_branch_out, mux_branch_out);
 
-mux2 mux_data (aluresult, readdata, memtoreg, WriteData);
+mux2 mux_data (aluresult, readdata, memtoreg, mux_data_out);
 
 int_mem imem (pcout, instruction);
 

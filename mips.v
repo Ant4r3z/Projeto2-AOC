@@ -89,6 +89,8 @@ int_mem imem (pcout, instruction);
 
 jump_control jpctrl (instruction, add_pc_4_out, jump_address);
 
+jump_control jpctrl (instruction, add_pc_4_out, jump_address);
+
 mux2 muxJumpControl (add_pc_4_out, jump_address, jump, mux_jump_out);
 
 dmem d_mem (clock, ReadData2, aluresult, memwrite, memread, readdata);

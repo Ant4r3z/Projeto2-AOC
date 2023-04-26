@@ -14,7 +14,6 @@ reg [31:0] instruction [255:0];
 
 initial begin
     $readmemb("C:/quartus/Projeto2-AOC/instruction.list", instruction);
-end
 
 always @(address) begin
     i_out = instruction[address>>2];

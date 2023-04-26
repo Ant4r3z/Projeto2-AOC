@@ -1,13 +1,22 @@
+// [BCC 2022.1] Arquitetura e Organização de Computadores
+// Atividade 2VA
+// Arquitetantes:
+// - Gabriel Santos
+// - Gilvaney Leandro
+// - Joyce Mirelle
+// - Ronaldo Rodrigues
+
 module mips(
-clock, pcout, nextPC, ALUOp, OP, aluin1, aluin2, aluresult, instruction, ReadData2
+clock, pcout, nextPC, aluresult, instruction, readdata
 );
 
 output wire [31:0] pcout;
 output wire [31:0] nextPC;
+wire [31:0] mux_branch_out;
 input wire clock;
-output wire [3:0] ALUOp;
-output wire [3:0] OP;
-output wire [31:0] aluin1, aluin2;
+wire [3:0] ALUOp;
+wire [3:0] OP;
+wire [31:0] aluin1, aluin2;
 output wire [31:0] aluresult;
 wire zero_flag;
 wire [4:0] shamt;
@@ -15,7 +24,7 @@ output wire [31:0] instruction;
 wire [4:0] ReadAddr1;
 wire [4:0] ReadAddr2;
 wire [31:0] ReadData1;
-output wire [31:0] ReadData2;
+wire [31:0] ReadData2;
 wire [4:0] WriteAddr;
 wire [31:0] WriteData;
 wire Reset;
@@ -35,12 +44,11 @@ wire [31:0] add_pc_4_out, add_pc_4_jal_out;
 
 wire [31:0] adder_branch_out;
 
-wire mux_branch_out;
 
 
 wire and_branch_out;
 
-wire [31:0] readdata; 
+output wire [31:0] readdata; 
 
 wire [31:0] jump_address, mux_jump_out, instructionWriteAddress;
 
@@ -54,7 +62,7 @@ ula_ctrl ula_ctrl0 (ALUOp, instruction[5:0], OP);
 
 ula ula0 (aluin1, aluin2, OP, aluresult, zero_flag, instruction[10:6], instruction[15:0], bne);
 
-control ctrl(instruction[31:26], branch, bne, ALUOp, memread, memwrite, memtoreg, regdst, regwrite, alusrc, jump);
+control ctrl(instruction[31:26], instruction[5:0], branch, bne, ALUOp, memread, memwrite, memtoreg, regdst, regwrite, alusrc, jump);
 
 sign_extend sign_extend (instruction[15:0], sign_extend_out);
 
